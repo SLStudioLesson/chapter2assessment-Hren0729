@@ -62,7 +62,21 @@ public class RecipeUI {
      * RecipeFileHandlerから読み込んだレシピデータを整形してコンソールに表示します。
      */
     private void displayRecipes() {
+        ArrayList<String> recipes = RecipeFileHandler.readRecipes();
 
+        System.out.println("Recipes");
+        System.out.println("-----------------------------------");
+
+        for(String recipe:recipes){
+            String[]parts=recipe.split("",2);
+            if (parts.length==2) {
+                System.out.println("Recipe Name:"+parts[0]);
+                System.out.println("Main Ingredients: " + parts[1]);
+            }else{
+                System.out.println("Invalid recipe format: " + recipe);
+            }
+            System.out.println("-----------------------------------");
+        }
     }
 
     /**
