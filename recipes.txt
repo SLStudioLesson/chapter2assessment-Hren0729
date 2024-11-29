@@ -1,0 +1,7 @@
+Ground Beef,a
+Tomato Soup,Tomatoes, Onion, Garlic, Vegetable Stock,Chicken Curry,Chicken, Curry Powder, Onion, Garlic, Ginger
+Chicken,Curry,Chicken, Curry Powder, Onion, Garlic, Ginger
+Mikan,ringo
+Mikan,ringo
+aaaaaaaaaaaaaaaa,aaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaa,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

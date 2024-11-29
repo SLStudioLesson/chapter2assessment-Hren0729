@@ -2,6 +2,7 @@ package data;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class RecipeFileHandler {
     private String filePath;
 
     public RecipeFileHandler() {
-        filePath = "app/src/main/resources/recipes.txt";
+        this.filePath = "app\\src\\main\\resources\\recipes.txt";
     }
 
     public RecipeFileHandler(String filePath) {
@@ -25,16 +26,24 @@ public class RecipeFileHandler {
      *
      * @return レシピデータ
      */
-    public static ArrayList<String> readRecipes() {
-        ArrayList<String>recipes=new ArrayList<>();
-            try (BufferedReader br = new BufferedReader(new FileReader("recipes.txt"))){
-                String line;
-                while ((line=br.readLine())!=null) {
-                    recipes.add(line);
-                }
-            } catch (IOException e) {
-                System.out.println("Error reading file: "+ e.getMessage());
+    public ArrayList<String> readRecipes() {
+        ArrayList<String> recipes = new ArrayList<>();
+        File file = new File(filePath);
+
+        // ファイルが存在するかどうか
+        if (!file.exists()) {
+            System.out.println("No recipes file found.");
+            return recipes;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader("app\\src\\main\\resources\\recipes.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                recipes.add(line);
             }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
         return recipes;
     }
 
@@ -46,13 +55,12 @@ public class RecipeFileHandler {
      * @param recipeName レシピ名
      * @param ingredients 材料名
      */
-     // 
     public void addRecipe(String recipeName, String ingredients) {
-        try (BufferedReader bw = new BufferedWriter(new FileWriter(filePath,true))){
-            bw.write(recipeName+", "+ingredients);
-            bw.newLine();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("app\\src\\main\\resources\\recipes.txt", true))) {
+            writer.write(recipeName + "," + ingredients);
+            writer.newLine();  // 新しい行に書き込む
         } catch (IOException e) {
-            System.out.println("Error reading file: "+ e.getMessage());
+            System.out.println("Error writing to file: " + e.getMessage());
         }
     }
 }
